@@ -8,10 +8,12 @@ from restclients_core.exceptions import DataFailureException
 from uw_upass.models import UPassStatus, CURRENT, NOT_CURRENT
 
 
+DAO = UPass_DAO()
+
+
 def get_upass_status(netid):
-    dao = UPass_DAO()
     url = get_upass_url(netid)
-    response = dao.getURL(url, {})
+    response = DAO.getURL(url, {})
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
