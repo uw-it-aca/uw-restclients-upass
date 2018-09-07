@@ -14,15 +14,17 @@ DAO = UPass_DAO()
 def get_upass_status(netid):
     url = get_upass_url(netid)
     response = DAO.getURL(url, {})
+
+    response_data = str(response.data)
     if response.status != 200:
-        raise DataFailureException(url, response.status, response.data)
+        raise DataFailureException(url, response.status, response_data)
 
-    if len(response.data) == 0 or\
-            not(CURRENT in response.data or NOT_CURRENT in response.data):
+    if len(response_data) == 0 or\
+            not(CURRENT in response_data or NOT_CURRENT in response_data):
         raise Exception("%s Unexpected Response Data: %s" %
-                        (url, response.data))
+                        (url, response_data))
 
-    status = UPassStatus.create(response.data)
+    status = UPassStatus.create(response_data)
     return status
 
 
