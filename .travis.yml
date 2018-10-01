@@ -8,9 +8,9 @@ before_script:
 - pip install nose2
 - pip install coverage
 - pip install commonconf
-- pip install python-coveralls
+- pip install coveralls
 script:
-- pycodestyle uw_upass/ --exclude=uw_upass/tests
+- pycodestyle uw_upass/
 - coverage run --source=uw_upass uw_upass/test.py -v
 after_script:
 - coveralls
