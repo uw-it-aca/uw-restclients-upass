@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from unittest import TestCase
 from uw_upass import get_upass_url, get_upass_status
 from uw_upass.models import UPassStatus
