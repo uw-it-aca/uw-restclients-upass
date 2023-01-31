@@ -23,8 +23,8 @@ def get_upass_status(netid):
     if response.status != 200:
         raise DataFailureException(url, response.status, response_data)
 
-    if len(response_data) == 0 or\
-            not(CURRENT in response_data or NOT_CURRENT in response_data):
+    if (not len(response_data) or
+            not (CURRENT in response_data or NOT_CURRENT in response_data)):
         raise Exception("{} Unexpected Response Data: {}".format(
             url, response_data))
 
