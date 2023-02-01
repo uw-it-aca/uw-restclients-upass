@@ -1,42 +1,31 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import json
 from restclients_core import models
 
 
-CURRENT = "U-PASS Membership is current."
-NOT_CURRENT = "U-PASS is not current."
-STUDENT = "Your Student U-PASS Membership "
-EMPLOYEE = "Your Faculty/Staff U-PASS Membership "
-
-
 class UPassStatus(models.Model):
-    status_message = models.TextField()
-    is_current = models.BooleanField(default=False)
-    is_employee = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
+    active_employee_membership = models.BooleanField(
+        null=True, default=None)
+    active_student_membership = models.BooleanField(
+        null=True, default=None)
 
     def json_data(self):
-        data = {
-            'status_message': self.status_message,
-            'is_current': self.is_current,
-            'is_employee': self.is_employee,
-            'is_student': self.is_student,
+        return {
+            'active_employee_membership': self.active_employee_membership,
+            'active_student_membership': self.active_student_membership,
         }
-        return data
 
     @classmethod
-    def create(cls, status_data):
-        status = cls(status_message=status_data)
-        if CURRENT in status_data:
-            status.is_current = True
-
-        if STUDENT in status_data:
-            status.is_student = True
-
-        if EMPLOYEE in status_data:
-            status.is_employee = True
+    def create(cls, data):
+        status = cls()
+        if "activeEmployeeMembership" in data:
+            status.active_employee_membership = data.get(
+                'activeEmployeeMembership', False)
+        if "activeStudentMembership" in data:
+            status.active_student_membership = data.get(
+                'activeStudentMembership', False)
         return status
 
     def __str__(self):
