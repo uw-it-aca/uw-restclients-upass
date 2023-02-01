@@ -6,10 +6,10 @@ This is the interface for interacting with the UPass service.
 
 """
 
-from urllib.parse import urlencode
+import json
 from uw_upass.dao import UPass_DAO
 from restclients_core.exceptions import DataFailureException
-from uw_upass.models import UPassStatus, CURRENT, NOT_CURRENT
+from uw_upass.models import UPassStatus
 
 
 DAO = UPass_DAO()
@@ -17,20 +17,15 @@ DAO = UPass_DAO()
 
 def get_upass_status(netid):
     url = get_upass_url(netid)
-    response = DAO.getURL(url, {})
-
-    response_data = str(response.data)
+    response = DAO.getURL(
+        url, {'Accept': 'application/json', 'Connection': 'keep-alive'})
+    data = (
+        response.data.decode('UTF-8') if type(response.data) == bytes
+        else response.data)
     if response.status != 200:
-        raise DataFailureException(url, response.status, response_data)
-
-    if (not len(response_data) or
-            not (CURRENT in response_data or NOT_CURRENT in response_data)):
-        raise Exception("{} Unexpected Response Data: {}".format(
-            url, response_data))
-
-    status = UPassStatus.create(response_data)
-    return status
+        raise DataFailureException(url, response.status, data)
+    return UPassStatus.create(json.loads(data))
 
 
 def get_upass_url(netid):
-    return "/MyUWUpass/MyUWUpass.aspx?{}".format(urlencode({"id": netid}))
+    return "/upassdataws/api/person/v1/membershipstatus/{}".format(netid)
