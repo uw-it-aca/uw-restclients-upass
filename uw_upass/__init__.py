@@ -20,7 +20,7 @@ def get_upass_status(netid):
     response = DAO.getURL(
         url, {'Accept': 'application/json', 'Connection': 'keep-alive'})
     data = (
-        response.data.decode('UTF-8') if type(response.data) == bytes
+        response.data.decode('UTF-8') if isinstance(response.data, bytes)
         else response.data)
     if response.status != 200:
         raise DataFailureException(url, response.status, data)
