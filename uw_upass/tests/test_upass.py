@@ -38,8 +38,8 @@ class UPassTest(TestCase):
                           "jerror")
 
     def test_get_url(self):
-        self.assertEquals(get_upass_url("javerage"),
-                          "/MyUWUpass/MyUWUpass.aspx?id=javerage")
+        self.assertEqual(get_upass_url("javerage"),
+                         "/MyUWUpass/MyUWUpass.aspx?id=javerage")
 
     def test_message_parsing(self):
         fac_message = ("<p><span class='highlight'>Your Faculty/Staff U-PASS"
