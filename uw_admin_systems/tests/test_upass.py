@@ -4,10 +4,10 @@
 from unittest import TestCase
 from uw_admin_systems.upass import get_upass_status
 from restclients_core.exceptions import DataFailureException
-from uw_admin_systems.util import fdao_upass_override
+from uw_admin_systems.util import fdao_uw_admin_sys_override
 
 
-@fdao_upass_override
+@fdao_uw_admin_sys_override
 class UPassTest(TestCase):
     def test_get_upass_status(self):
         status = get_upass_status("javerage")
