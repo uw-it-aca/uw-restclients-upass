@@ -1,2 +1,2 @@
-include uw_upass/VERSION
-recursive-include uw_upass *
+include uw_admin_systems/VERSION
+recursive-include uw_admin_systems *

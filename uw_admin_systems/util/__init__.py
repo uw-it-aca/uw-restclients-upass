@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from restclients_core.util.decorators import use_mock
-from uw_admin_systems.dao import UPass_DAO
+from uw_admin_systems import DAO
 
-fdao_upass_override = use_mock(UPass_DAO())
+
+fdao_uw_admin_sys_override = use_mock(DAO)

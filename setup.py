@@ -9,7 +9,7 @@ See the README on `GitHub
 <https://github.com/uw-it-aca/uw-restclients-upass>`_.
 """
 
-version_path = 'uw_upass/VERSION'
+version_path = 'uw_admin_systems/VERSION'
 VERSION = open(os.path.join(os.path.dirname(__file__), version_path)).read()
 VERSION = VERSION.replace("\n", "")
 
@@ -19,7 +19,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='UW-RestClients-UPass',
     version=VERSION,
-    packages=['uw_upass'],
+    packages=['upass'],
     author="UW-IT T&LS",
     author_email="aca-it@uw.edu",
     include_package_data=True,
