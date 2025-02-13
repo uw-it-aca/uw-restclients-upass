@@ -1,4 +1,4 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -7,12 +7,9 @@ This is the interface for interacting with the UPass service.
 """
 
 import json
-from uw_upass.dao import UPass_DAO
+from uw_admin_systems import DAO
 from restclients_core.exceptions import DataFailureException
-from uw_upass.models import UPassStatus
-
-
-DAO = UPass_DAO()
+from uw_admin_systems.models import UPassStatus
 
 
 def get_upass_status(netid):
