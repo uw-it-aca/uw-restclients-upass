@@ -5,7 +5,7 @@ import json
 from restclients_core import models
 
 
-class IDcardStatus(models.Model):
+class IDcardElig(models.Model):
     not_eligible = models.BooleanField(null=True, default=None)
     employee_eligible = models.BooleanField(null=True, default=None)
     retiree_eligible = models.BooleanField(null=True, default=None)

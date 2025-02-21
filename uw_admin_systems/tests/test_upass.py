@@ -15,8 +15,8 @@ class UPassTest(TestCase):
         self.assertTrue(status.active_student_membership)
         self.assertEqual(
             status.json_data(),
-            {'active_employee_membership': True,
-             'active_student_membership': True}
+            {"active_employee_membership": True,
+             "active_student_membership": True}
         )
         self.assertIsNotNone(str(status))
 
@@ -32,8 +32,8 @@ class UPassTest(TestCase):
         self.assertEqual(
             status.json_data(),
             {
-                'active_employee_membership': None,
-                'active_student_membership': None
+                "active_employee_membership": None,
+                "active_student_membership": None
             }
         )
 
