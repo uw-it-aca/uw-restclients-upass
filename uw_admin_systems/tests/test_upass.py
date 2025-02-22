@@ -1,13 +1,13 @@
-# Copyright 2024 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import TestCase
-from uw_upass import get_upass_status
+from uw_admin_systems.upass import get_upass_status
 from restclients_core.exceptions import DataFailureException
-from uw_upass.util import fdao_upass_override
+from uw_admin_systems.util import fdao_uw_admin_sys_override
 
 
-@fdao_upass_override
+@fdao_uw_admin_sys_override
 class UPassTest(TestCase):
     def test_get_upass_status(self):
         status = get_upass_status("javerage")
@@ -15,8 +15,8 @@ class UPassTest(TestCase):
         self.assertTrue(status.active_student_membership)
         self.assertEqual(
             status.json_data(),
-            {'active_employee_membership': True,
-             'active_student_membership': True}
+            {"active_employee_membership": True,
+             "active_student_membership": True}
         )
         self.assertIsNotNone(str(status))
 
@@ -32,8 +32,8 @@ class UPassTest(TestCase):
         self.assertEqual(
             status.json_data(),
             {
-                'active_employee_membership': None,
-                'active_student_membership': None
+                "active_employee_membership": None,
+                "active_student_membership": None
             }
         )
 

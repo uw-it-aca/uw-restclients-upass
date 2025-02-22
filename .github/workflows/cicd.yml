@@ -23,7 +23,7 @@
 name: tests
 
 env:
-  APP_NAME: uw_upass
+  APP_NAME: uw_admin_systems
   COVERAGE_PYTHON_VERSION: '3.10'
 
 on:
