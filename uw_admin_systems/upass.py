@@ -1,20 +1,14 @@
 # Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-"""
-This is the interface for interacting with the UPass service.
-
-"""
-
 import json
-from uw_admin_systems import get_resource
+from uw_admin_systems import get_upass_resource
 from uw_admin_systems.models import UPassStatus
+
+UPASS_API = "/upassdataws/api/person/v1/membershipstatus/{}"
 
 
 def get_upass_status(netid):
-    data = get_resource(get_upass_url(netid))
+    url = UPASS_API.format(netid)
+    data = get_upass_resource(url)
     return UPassStatus.create(json.loads(data))
-
-
-def get_upass_url(netid):
-    return f"/upassdataws/api/person/v1/membershipstatus/{netid}"

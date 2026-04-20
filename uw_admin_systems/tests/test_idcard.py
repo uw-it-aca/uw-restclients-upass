@@ -4,10 +4,10 @@
 from unittest import TestCase
 from uw_admin_systems.idcard import get_idcard_elig
 from restclients_core.exceptions import DataFailureException
-from uw_admin_systems.util import fdao_uw_admin_sys_override
+from uw_admin_systems.util import fdao_idcard_override
 
 
-@fdao_uw_admin_sys_override
+@fdao_idcard_override
 class IdcardTest(TestCase):
     def test_get_idcard_elig(self):
         status = get_idcard_elig("javerage")
